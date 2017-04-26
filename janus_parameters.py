@@ -11,11 +11,13 @@ parser.add_argument('--out', type=str, help='Name of output file',
 parser.add_argument('--N-loop', type=int, help='Number of MPCD loops',
                     default=1024)
 parser.add_argument('--N-MD', type=int, help='Number of MD loops', default=100)
+parser.add_argument('-L', type=int, help='Length of the box', default=32)
+
 args = parser.parse_args()
 
 output = """# physical parameters
 T = .333333333
-L = 60 60 60
+L = {L} {L} {L}
 rho = 10
 tau = 1.0
 probability = 1
