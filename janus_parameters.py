@@ -3,6 +3,7 @@ from __future__ import print_function
 
 import sys
 import argparse
+import math
 
 """Write a parameter file for the program single_janus_pbc of RMPCDMD"""
 
@@ -14,6 +15,8 @@ parser.add_argument('--N-MD', type=int, help='Number of MD loops', default=100)
 parser.add_argument('-L', type=int, help='Length of the box', default=32)
 parser.add_argument('-T', type=float, help='Temperature', default=1)
 parser.add_argument('--sigma', type=float, help='LJ sigma for the colloids', default=3)
+parser.add_argument('--alpha', type=float, help='MPCD collision angle', default=math.pi/2)
+parser.add_argument('--tau', type=float, help='MPCD collision time', default=1)
 
 args = parser.parse_args()
 
@@ -21,7 +24,8 @@ output = """# physical parameters
 T = {T}
 L = {L} {L} {L}
 rho = 10
-tau = 1.0
+tau = {tau}
+alpha = {alpha}
 probability = 1
 
 # simulation parameters
