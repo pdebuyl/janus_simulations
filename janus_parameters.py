@@ -1,22 +1,24 @@
 #!/usr/bin/env python
 from __future__ import print_function
 
+import sys
 import argparse
 
 """Write a parameter file for the program single_janus_pbc of RMPCDMD"""
 
 parser = argparse.ArgumentParser(usage=__doc__)
-parser.add_argument('--out', type=str, help='Name of output file',
-                    required=True)
+parser.add_argument('--out', type=str, help='Name of output file')
 parser.add_argument('--N-loop', type=int, help='Number of MPCD loops',
                     default=1024)
 parser.add_argument('--N-MD', type=int, help='Number of MD loops', default=100)
 parser.add_argument('-L', type=int, help='Length of the box', default=32)
+parser.add_argument('-T', type=float, help='Temperature', default=1)
+parser.add_argument('--sigma', type=float, help='LJ sigma for the colloids', default=3)
 
 args = parser.parse_args()
 
 output = """# physical parameters
-T = .333333333
+T = {T}
 L = {L} {L} {L}
 rho = 10
 tau = 1.0
@@ -46,9 +48,13 @@ rattle_vel_tolerance = 1d-8
 do_quaternion = T
 quaternion_treshold = 1d-13
 
-sigma = 3
+sigma = {sigma}
 epsilon_N = 1.0 0.25
 epsilon_C = 1.0 0.25""".format(**args.__dict__)
 
-with open(args.out, 'w') as out_f:
-    print(output, file=out_f)
+
+if args.out:
+    with open(args.out, 'w') as out_f:
+        print(output, file=out_f)
+else:
+    print(output, file=sys.stdout)
