@@ -1,13 +1,13 @@
 # physical parameters
-T = .333333333
-L = 60 60 60
+T = 1
+L = 32 32 32
 rho = 10
 tau = 1.0
 probability = 1
 
 # simulation parameters
 N_MD = 100
-N_loop = 16384
+N_loop = 1024
 colloid_sampling = 50
 do_solvent_io = F
 equilibration_loops = 50
