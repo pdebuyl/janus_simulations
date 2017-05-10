@@ -17,6 +17,7 @@ parser.add_argument('-T', type=float, help='Temperature', default=1)
 parser.add_argument('--sigma', type=float, help='LJ sigma for the colloids', default=3)
 parser.add_argument('--alpha', type=float, help='MPCD collision angle', default=math.pi/2)
 parser.add_argument('--tau', type=float, help='MPCD collision time', default=1)
+parser.add_argument('--datafile', type=str, help='Datafile for janus particle', default='janus_structure.h5')
 
 args = parser.parse_args()
 
@@ -37,7 +38,7 @@ N_loop = {N_loop}
 colloid_sampling = 50
 do_solvent_io = F
 equilibration_loops = 50
-data_filename = janus_structure.h5
+data_filename = {datafile}
 reaction_radius = {r_radius}
 link_treshold = {link_treshold}
 do_read_links = F
