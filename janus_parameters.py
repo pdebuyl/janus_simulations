@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from __future__ import print_function
+from __future__ import print_function, division
 
 import sys
 import argparse
@@ -20,6 +20,9 @@ parser.add_argument('--tau', type=float, help='MPCD collision time', default=1)
 
 args = parser.parse_args()
 
+r_radius = 7.3*args.sigma/3
+link_treshold = 2.7*args.sigma/3
+
 output = """# physical parameters
 T = {T}
 L = {L} {L} {L}
@@ -35,8 +38,8 @@ colloid_sampling = 50
 do_solvent_io = F
 equilibration_loops = 50
 data_filename = janus_structure.h5
-reaction_radius = 7.3
-link_treshold = 2.7
+reaction_radius = {r_radius}
+link_treshold = {link_treshold}
 do_read_links = F
 polar_r_max = 10
 bulk_rate = 0.01
@@ -54,7 +57,7 @@ quaternion_treshold = 1d-13
 
 sigma = {sigma}
 epsilon_N = 1.0 0.25
-epsilon_C = 1.0 0.25""".format(**args.__dict__)
+epsilon_C = 1.0 0.25""".format(r_radius=r_radius, link_treshold=link_treshold, **args.__dict__)
 
 
 if args.out:
