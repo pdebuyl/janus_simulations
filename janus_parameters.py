@@ -18,6 +18,7 @@ parser.add_argument('--sigma', type=float, help='LJ sigma for the colloids', def
 parser.add_argument('--alpha', type=float, help='MPCD collision angle', default=math.pi/2)
 parser.add_argument('--tau', type=float, help='MPCD collision time', default=1)
 parser.add_argument('--datafile', type=str, help='Datafile for janus particle', default='janus_structure.h5')
+parser.add_argument('--prob', type=float, help='Probability of surface reaction', default=1)
 
 args = parser.parse_args()
 
@@ -30,7 +31,7 @@ L = {L} {L} {L}
 rho = 10
 tau = {tau}
 alpha = {alpha}
-probability = 1
+probability = {prob}
 
 # simulation parameters
 N_MD = {N_MD}
