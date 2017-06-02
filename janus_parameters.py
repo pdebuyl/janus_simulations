@@ -19,6 +19,8 @@ parser.add_argument('--alpha', type=float, help='MPCD collision angle', default=
 parser.add_argument('--tau', type=float, help='MPCD collision time', default=1)
 parser.add_argument('--datafile', type=str, help='Datafile for janus particle', default='janus_structure.h5')
 parser.add_argument('--prob', type=float, help='Probability of surface reaction', default=1)
+parser.add_argument('--epsilon-C', type=float, help='Interaction for C bead', default=(1,1), nargs=2)
+parser.add_argument('--epsilon-N', type=float, help='Interaction for N bead', default=(1,1), nargs=2)
 
 args = parser.parse_args()
 
@@ -58,8 +60,8 @@ do_quaternion = T
 quaternion_treshold = 1d-13
 
 sigma = {sigma}
-epsilon_N = 1.0 0.25
-epsilon_C = 1.0 0.25""".format(r_radius=r_radius, link_treshold=link_treshold, **args.__dict__)
+epsilon_N = {epsilon_N[0]} {epsilon_N[1]}
+epsilon_C = {epsilon_C[0]} {epsilon_C[1]}""".format(r_radius=r_radius, link_treshold=link_treshold, **args.__dict__)
 
 
 if args.out:
