@@ -21,6 +21,7 @@ parser.add_argument('--datafile', type=str, help='Datafile for janus particle', 
 parser.add_argument('--prob', type=float, help='Probability of surface reaction', default=1)
 parser.add_argument('--epsilon-C', type=float, help='Interaction for C bead', default=(1,1), nargs=2)
 parser.add_argument('--epsilon-N', type=float, help='Interaction for N bead', default=(1,1), nargs=2)
+parser.add_argument('--bulk-rate', type=float, help='Rate of bulk reaction', default=0.01)
 
 args = parser.parse_args()
 
@@ -46,7 +47,7 @@ reaction_radius = {r_radius}
 link_treshold = {link_treshold}
 do_read_links = F
 polar_r_max = 10
-bulk_rate = 0.01
+bulk_rate = {bulk_rate}
 
 # interaction parameters
 sigma_colloid = 2
