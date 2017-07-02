@@ -22,6 +22,7 @@ parser.add_argument('--prob', type=float, help='Probability of surface reaction'
 parser.add_argument('--epsilon-C', type=float, help='Interaction for C bead', default=(1,1), nargs=2)
 parser.add_argument('--epsilon-N', type=float, help='Interaction for N bead', default=(1,1), nargs=2)
 parser.add_argument('--bulk-rate', type=float, help='Rate of bulk reaction', default=0.01)
+parser.add_argument('--colloid-sampling', type=int, help='Interval for colloid sampling', default=50)
 
 args = parser.parse_args()
 
@@ -39,7 +40,7 @@ probability = {prob}
 # simulation parameters
 N_MD = {N_MD}
 N_loop = {N_loop}
-colloid_sampling = 50
+colloid_sampling = {colloid_sampling}
 do_solvent_io = F
 equilibration_loops = 50
 data_filename = {datafile}
