@@ -13,11 +13,15 @@ colloid_sampling = 50
 do_solvent_io = F
 equilibration_loops = 50
 data_filename = janus_structure.h5
+data_group = janus
 reaction_radius = 7.3
 link_treshold = 2.7
 do_read_links = F
 polar_r_max = 10
 bulk_rate = 0.01
+
+# wall parameters
+do_ywall = F
 
 # interaction parameters
 sigma_colloid = 2

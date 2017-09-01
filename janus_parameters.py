@@ -18,15 +18,21 @@ parser.add_argument('--sigma', type=float, help='LJ sigma for the colloids', def
 parser.add_argument('--alpha', type=float, help='MPCD collision angle', default=math.pi/2)
 parser.add_argument('--tau', type=float, help='MPCD collision time', default=1)
 parser.add_argument('--datafile', type=str, help='Datafile for janus particle', default='janus_structure.h5')
+parser.add_argument('--data-group', type=str, help='Name of particles group in input file', default='janus')
 parser.add_argument('--prob', type=float, help='Probability of surface reaction', default=1)
 parser.add_argument('--epsilon-C', type=float, help='Interaction for C bead', default=(1,1), nargs=2)
 parser.add_argument('--epsilon-N', type=float, help='Interaction for N bead', default=(1,1), nargs=2)
 parser.add_argument('--bulk-rate', type=float, help='Rate of bulk reaction', default=0.01)
 parser.add_argument('--colloid-sampling', type=int, help='Interval for colloid sampling', default=50)
+parser.add_argument('--reaction-radius', help='reaction radius around the c.o.m. of the colloid')
 
 args = parser.parse_args()
 
-r_radius = 7.3*args.sigma/3
+if args.reaction_radius is not None:
+    r_radius = args.reaction_radius
+else:
+    r_radius = 7.3*args.sigma/3
+
 link_treshold = 2.7*args.sigma/3
 
 output = """# physical parameters
@@ -44,11 +50,15 @@ colloid_sampling = {colloid_sampling}
 do_solvent_io = F
 equilibration_loops = 50
 data_filename = {datafile}
+data_group = {data_group}
 reaction_radius = {r_radius}
 link_treshold = {link_treshold}
 do_read_links = F
 polar_r_max = 10
 bulk_rate = {bulk_rate}
+
+# wall parameters
+do_ywall = F
 
 # interaction parameters
 sigma_colloid = 2
