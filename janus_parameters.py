@@ -12,7 +12,8 @@ parser.add_argument('--out', type=str, help='Name of output file')
 parser.add_argument('--N-loop', type=int, help='Number of MPCD loops',
                     default=1024)
 parser.add_argument('--N-MD', type=int, help='Number of MD loops', default=100)
-parser.add_argument('-L', type=int, help='Length of the box', default=32)
+parser.add_argument('-L', type=int, nargs='+', help='Length of the box',
+                    default=[32])
 parser.add_argument('-T', type=float, help='Temperature', default=1)
 parser.add_argument('--sigma', type=float, help='LJ sigma for the colloids',
                     default=3)
@@ -61,9 +62,16 @@ link_treshold = 2.7*args.sigma/3
 
 ywall_logical = 'T' if args.ywall else 'F'
 
+if len(args.L)==1:
+    box_L = '{L} {L} {L}'.format(L=args.L[0])
+elif len(args.L)==3:
+    box_L = '{L[0]} {L[1]} {L[2]}'.format(L=args.L)
+else:
+    raise ValueError('L must be 1 or 3 integers')
+
 output = """# physical parameters
 T = {T}
-L = {L} {L} {L}
+L = {box_L}
 rho = 10
 tau = {tau}
 alpha = {alpha}
@@ -107,7 +115,8 @@ epsilon_N = {epsilon_N[0]} {epsilon_N[1]}
 epsilon_C = {epsilon_C[0]} {epsilon_C[1]}"""
 
 output = output.format(r_radius=r_radius, link_treshold=link_treshold,
-                        ywall_logical=ywall_logical, **args.__dict__)
+                       box_L=box_L,
+                       ywall_logical=ywall_logical, **args.__dict__)
 
 
 if args.out:
