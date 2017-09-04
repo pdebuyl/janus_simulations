@@ -22,6 +22,11 @@ bulk_rate = 0.01
 
 # wall parameters
 do_ywall = F
+wall_sigma = 3
+wall_shift = 1
+wall_epsilon = 1
+fluid_wall = PERIODIC
+
 
 # interaction parameters
 sigma_colloid = 2
