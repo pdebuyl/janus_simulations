@@ -104,9 +104,10 @@ quaternion_treshold = 1d-13
 
 sigma = {sigma}
 epsilon_N = {epsilon_N[0]} {epsilon_N[1]}
-epsilon_C = {epsilon_C[0]} {epsilon_C[1]}
-""".format(r_radius=r_radius, link_treshold=link_treshold,
-           ywall_logical=ywall_logical, **args.__dict__)
+epsilon_C = {epsilon_C[0]} {epsilon_C[1]}"""
+
+output = output.format(r_radius=r_radius, link_treshold=link_treshold,
+                        ywall_logical=ywall_logical, **args.__dict__)
 
 
 if args.out:
