@@ -15,8 +15,13 @@ parser.add_argument('--N-MD', type=int, help='Number of MD loops', default=100)
 parser.add_argument('-L', type=int, nargs='+', help='Length of the box',
                     default=[32])
 parser.add_argument('-T', type=float, help='Temperature', default=1)
-parser.add_argument('--sigma', type=float, help='LJ sigma for the colloids',
+parser.add_argument('--sigma', type=float,
+                    help='LJ sigma for colloid solvent interaction',
                     default=3)
+parser.add_argument('--sigma-colloid', type=float,
+                    help='LJ sigma for colloid colloid interaction and '
+                    'for setting the mass of the colloids',
+                    default=2)
 parser.add_argument('--alpha', type=float, help='MPCD collision angle',
                     default=math.pi/2)
 parser.add_argument('--tau', type=float, help='MPCD collision time', default=1)
@@ -102,7 +107,7 @@ fluid_wall = {ywall_bc}
 
 
 # interaction parameters
-sigma_colloid = 2
+sigma_colloid = {sigma_colloid}
 epsilon_colloid = 2
 do_lennard_jones = F
 do_elastic = F
