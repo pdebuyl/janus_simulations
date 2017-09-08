@@ -50,6 +50,8 @@ parser.add_argument('--ywall-shift',
 parser.add_argument('--ywall-epsilon',
                     help='magnitude of the wall colloid potential',
                     type=float, default=1)
+parser.add_argument('--polar-r-max', type=float,
+                    help='radius of polar histogram', default=10)
 
 args = parser.parse_args()
 
@@ -88,7 +90,7 @@ data_group = {data_group}
 reaction_radius = {r_radius}
 link_treshold = {link_treshold}
 do_read_links = F
-polar_r_max = 10
+polar_r_max = {polar_r_max}
 bulk_rate = {bulk_rate}
 
 # wall parameters
